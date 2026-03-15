@@ -1,4 +1,4 @@
-# URL Shortener API
+# URL Short-links API
 
 API-сервис сокращения ссылок на FastAPI.
 
