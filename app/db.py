@@ -1,0 +1,16 @@
+from collections.abc import AsyncGenerator
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.orm import DeclarativeBase
+from app.config import get_settings
+# Создаём асинхронный SQLAlchemy engine
+settings = get_settings()
+engine = create_async_engine(settings.database_url, echo=settings.debug)
+# Создаём фабрику сессий
+AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
+# Базовый класс
+class Base(DeclarativeBase):
+    pass
+# Зависимости для FastAPI
+async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
+    async with AsyncSessionLocal() as session:
+        yield session

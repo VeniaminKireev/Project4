@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+asyncpg
+psycopg[binary]
+alembic
+redis
+celery
+python-jose[cryptography]
+passlib[bcrypt]
+pydantic-settings
+email-validator
